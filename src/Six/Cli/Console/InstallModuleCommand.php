@@ -40,6 +40,6 @@ class InstallModuleCommand extends BaseModuleCommand {
         $this->call('module:download', ['module' => $module]);
         
         $this->info("Execution du script d'installation du module $module.");
-        $this->system('php artisan six.' . $module . ' install -f');
+        $this->system('php artisan six:install -f ' . $module);
     }
 }
