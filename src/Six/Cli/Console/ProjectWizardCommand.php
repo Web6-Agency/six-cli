@@ -27,7 +27,14 @@ class ProjectWizardCommand extends Command {
      */
     public function fire()
     {
+        // Create a new 6admin project based on private repo
+        $this->call("project:create");
         
+        // Configure projet (database etc ...)
+        $this->call("project:configure");
+        
+        // Setup projet (Install modules, update composer, and module:install)
+        $this->call("project:setup");
     }
 
     /**
