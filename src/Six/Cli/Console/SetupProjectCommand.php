@@ -1,10 +1,6 @@
 <?php namespace Six\Cli\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-class SetupProjectCommand extends Command {
+class SetupProjectCommand extends BaseCommand {
 
     /**
      * The console command name.
@@ -27,30 +23,50 @@ class SetupProjectCommand extends Command {
      */
     public function fire()
     {
+        if($this->confirm('Initialiser un depot git et envoyer un commit initial [Y/n] ?')) {
+            $this->initGit();
+        }
+        
+        if($this->confirm('Mettre a jour les dependances composer du projet [Y/n] ?')) {
+            $this->updateDependencies();
+        }
+        
+        if($this->confirm('Telecharger tous les modules de 6admin disponibles (six module:download) [Y/n] ?')) {
+            $this->downloadModules();
+        }
+        
+        if($this->confirm('Installer tous les modules telecharges (six module:install) [Y/n] ?')) {
+            $this->installModules();
+        }
+    }
+    
+    private function initGit()
+    {
+        $this->system('git init');
+        $this->system('git add .');
+        $this->system("git commit -m \"base project\"");
+    }
+    
+    private function updateDependencies()
+    {
+        $cwd = getcwd();
+        
+        $this->info("Execution de composer update pour creolab/laravel-modules");
+        chdir(realpath($cwd . '/workbench/creolab/laravel-modules'));
+        $this->system('composer update');
+
+        $this->info("Execution de composer update");
+        chdir($cwd);
+        $this->system('composer update');
+    }
+    
+    private function downloadModules()
+    {
         
     }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
+    
+    private function installModules()
     {
-        return [
-            
-        ];
+        
     }
-
-    /**
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            
-        ];
-    }
-
-
 }
