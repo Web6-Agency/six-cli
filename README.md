@@ -77,7 +77,7 @@ six module:disable
 # Enable a disabled module
 six module:enable
 
-# Pulling modifications from module repository
+# Pulling / Pushing modifications from / to module repository
 six module:sync [module_name]
 
 # Pulling modifications from module repository
