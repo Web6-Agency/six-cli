@@ -25,6 +25,7 @@ class CreateProjectCommand extends BaseCommand {
     {
         if($this->confirm('Telecharger une fraiche installation de 6admin dans le dossier courant ?')) {
             $this->system('git archive --format=tar --remote=git@git.dev.web-6.fr:6admin/6admin.git master | tar -xf -');
+            $this->info('OK !');
         }
     }
 }
