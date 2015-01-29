@@ -27,12 +27,12 @@ class SetupProjectCommand extends BaseCommand {
             $this->initGit();
         }
         
-        if($this->confirm('Mettre a jour les dependances composer du projet [Y/n] ?')) {
-            $this->updateDependencies();
-        }
-        
         if($this->confirm('Telecharger tous les modules de 6admin disponibles (six module:download) [Y/n] ?')) {
             $this->downloadModules();
+        }
+        
+        if($this->confirm('Mettre a jour les dependances composer du projet [Y/n] ?')) {
+            $this->updateDependencies();
         }
         
         if($this->confirm('Installer tous les modules telecharges (six module:install) [Y/n] ?')) {
@@ -62,11 +62,11 @@ class SetupProjectCommand extends BaseCommand {
     
     private function downloadModules()
     {
-        
+        $this->call('module:download');
     }
     
     private function installModules()
     {
-        
+        $this->call('module:install');
     }
 }

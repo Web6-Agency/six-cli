@@ -36,7 +36,7 @@ abstract class BaseCommand extends Command {
     protected function getArguments()
     {
         return [
-            ['module', InputArgument::OPTIONAL, 'The module name', null]
+            
         ];
     }
 

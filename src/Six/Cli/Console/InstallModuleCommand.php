@@ -1,10 +1,6 @@
 <?php namespace Six\Cli\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-class InstallModuleCommand extends Command {
+class InstallModuleCommand extends BaseModuleCommand {
 
     /**
      * The console command name.
@@ -27,30 +23,23 @@ class InstallModuleCommand extends Command {
      */
     public function fire()
     {
+        $modules = $this->getTargetModules();
         
+        $this->installModules($modules);
     }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
+    
+    public function installModules($modules)
     {
-        return [
-            
-        ];
+        foreach($modules as $module) {
+            $this->installModule($module);
+        }
     }
-
-    /**
-     * @return array
-     */
-    protected function getOptions()
+    
+    public function installModule($module)
     {
-        return [
-            
-        ];
+        $this->call('module:download', ['module' => $module]);
+        
+        $this->info("Execution du script d'installation du module $module.");
+        $this->system('php artisan six.' . $module . ' install -f');
     }
-
-
 }

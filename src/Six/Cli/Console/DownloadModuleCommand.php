@@ -1,10 +1,6 @@
 <?php namespace Six\Cli\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-class DownloadModuleCommand extends Command {
+class DownloadModuleCommand extends BaseModuleCommand {
 
     /**
      * The console command name.
@@ -27,30 +23,32 @@ class DownloadModuleCommand extends Command {
      */
     public function fire()
     {
+        $modules = $this->getTargetModules();
         
+        $this->downloadModules($modules);
     }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
+    
+    public function downloadModules($modules)
     {
-        return [
-            
-        ];
+        foreach($modules as $module) {
+            $this->downloadModule($module);
+        }
     }
-
-    /**
-     * @return array
-     */
-    protected function getOptions()
+    
+    public function downloadModule($module)
     {
-        return [
-            
-        ];
+        $cwd = getcwd();
+        
+        if(file_exists(realpath($cwd . '/6admin/' . $module))) {
+            $this->error("Le module $module deja installe.");
+            return false;
+        }
+        
+        $this->info("Telechargement du module $module ... ");
+
+        $this->system('git remote add ' . $module . ' git@git.dev.web-6.fr:6admin/' . $module . '.git');
+        $this->system('git subtree add --squash --prefix=6admin/' . $module . ' ' . $module . ' master');
+        
+        $this->info('Telechargement : OK !');
     }
-
-
 }

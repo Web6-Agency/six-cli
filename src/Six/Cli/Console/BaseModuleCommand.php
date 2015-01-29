@@ -6,6 +6,28 @@ use Symfony\Component\Console\Input\InputOption;
 
 abstract class BaseModuleCommand extends BaseCommand {
     
+    protected function getTargetModules()
+    {
+        if(is_null($this->argument('module'))) {
+            return [
+                'core',
+                'account',
+                'catalog',
+                'backoffice',
+                'editable',
+                'editorial',
+                'form',
+                'frontoffice',
+                'media',
+                'remote',
+                'temoignage'
+            ];
+        }
+        else {
+            return [$this->argument('module')];
+        }
+    }
+    
     /**
      * Get the console command arguments.
      *
