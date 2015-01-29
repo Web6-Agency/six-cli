@@ -1,0 +1,27 @@
+{
+    "name": "web6-agency/six-cli",
+    "description": "Cli tools for controlling 6admin",
+    "keywords": ["6admin", "web6", "six-cli", "cli", "console"],
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "Web 6",
+            "email": "contact@web-6.fr"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/console": "~4|~5",
+        "illuminate/container": "~4|~5",
+        "illuminate/support": "~4|~5"
+    },
+    "autoload": {
+        "psr-0": {
+            "Six\\Cli": "src/"
+        }
+    },
+    "bin": [
+        "bin/module"
+    ],
+    "minimum-stability": "stable"
+}
