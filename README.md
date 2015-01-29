@@ -25,6 +25,12 @@ alias six="vendor/bin/six"
 export PATH="vendor/bin:$PATH"
 ```
 
+On windows terminal emulator like cmder you can make an alias like that
+
+```shell
+alias six=C:\Users\<USERNAME>\AppData\Roaming\Composer\vendor\bin\six.bat $1 $2 $3 $4 $5
+```
+
 ### Usage
 
 There is some command you can use for controling 6admin installation.
