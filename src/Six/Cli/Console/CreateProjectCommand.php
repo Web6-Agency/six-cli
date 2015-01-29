@@ -1,10 +1,6 @@
 <?php namespace Six\Cli\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-class CreateProjectCommand extends Command {
+class CreateProjectCommand extends BaseCommand {
 
     /**
      * The console command name.
@@ -27,30 +23,8 @@ class CreateProjectCommand extends Command {
      */
     public function fire()
     {
-        
+        if($this->confirm('Telecharger une fraiche installation de 6admin dans le dossier courant ?')) {
+            $this->system('git archive --format=tar --remote=git@git.dev.web-6.fr:6admin/6admin.git master | tar -xf -');
+        }
     }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [
-            
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            
-        ];
-    }
-
-
 }

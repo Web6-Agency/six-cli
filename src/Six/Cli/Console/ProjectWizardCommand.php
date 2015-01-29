@@ -1,10 +1,6 @@
 <?php namespace Six\Cli\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-class ProjectWizardCommand extends Command {
+class ProjectWizardCommand extends BaseCommand {
 
     /**
      * The console command name.
@@ -36,28 +32,4 @@ class ProjectWizardCommand extends Command {
         // Setup projet (Install modules, update composer, and module:install)
         $this->call("project:setup");
     }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [
-            
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            
-        ];
-    }
-
-
 }
