@@ -11,9 +11,9 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/console": "~4",
-        "illuminate/container": "~4",
-        "illuminate/support": "~4"
+        "illuminate/console": "4.*",
+        "illuminate/container": "4.*",
+        "illuminate/support": "4.*"
     },
     "autoload": {
         "psr-0": {
@@ -23,5 +23,5 @@
     "bin": [
         "bin/six"
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
