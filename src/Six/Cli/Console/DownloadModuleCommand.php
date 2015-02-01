@@ -40,7 +40,7 @@ class DownloadModuleCommand extends BaseModuleCommand {
         $cwd = getcwd();
         
         if(file_exists(realpath($cwd . '/6admin/' . $module))) {
-            $this->error("Le module $module deja installe.");
+            $this->error("Le module $module est deja telecharge, abandon du telechargement.");
             return false;
         }
         
