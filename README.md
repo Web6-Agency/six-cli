@@ -75,10 +75,10 @@ six module:uninstall [module_name]
 six module:refresh [module_name]
 
 # Temporary disable a module
-six module:disable
+six module:disable [module_name]
 
 # Enable a disabled module
-six module:enable
+six module:enable [module_name]
 
 # Pulling / Pushing modifications from / to module repository
 six module:sync [module_name]
