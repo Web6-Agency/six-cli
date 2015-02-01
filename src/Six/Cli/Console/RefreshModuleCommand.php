@@ -1,10 +1,6 @@
 <?php namespace Six\Cli\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-class RefreshModuleCommand extends Command {
+class RefreshModuleCommand extends BaseModuleCommand {
 
     /**
      * The console command name.
@@ -27,30 +23,24 @@ class RefreshModuleCommand extends Command {
      */
     public function fire()
     {
+        $modules = $this->getTargetModules();
         
+        $this->refreshModules($modules);
     }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
+    
+    public function refreshModules($modules)
     {
-        return [
-            
-        ];
+        foreach($modules as $module) {
+            $this->refreshModule($module);
+        }
     }
-
-    /**
-     * @return array
-     */
-    protected function getOptions()
+    
+    public function refreshModule($module)
     {
-        return [
-            
-        ];
+        $this->info("Execution du script de desinstallation du module $module.");
+        $this->system('php artisan six:uninstall -f ' . $module);
+        
+        $this->info("Execution du script d'installation du module $module.");
+        $this->system('php artisan six:install -f ' . $module);
     }
-
-
 }
