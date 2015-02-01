@@ -25,14 +25,16 @@ class DownloadModuleCommand extends BaseModuleCommand {
     {
         $modules = $this->getTargetModules();
         
-        $this->downloadModules($modules);
+        return $this->downloadModules($modules);
     }
     
     public function downloadModules($modules)
     {
         foreach($modules as $module) {
-            $this->downloadModule($module);
+            if($this->downloadModule($module) === 0) return 0;
         }
+        
+        return 1;
     }
     
     public function downloadModule($module)
@@ -41,14 +43,20 @@ class DownloadModuleCommand extends BaseModuleCommand {
         
         if(file_exists(realpath($cwd . '/6admin/' . $module))) {
             $this->error("Le module $module est deja telecharge, abandon du telechargement.");
-            return false;
+            return 0;
         }
         
         $this->info("Telechargement du module $module ... ");
 
         $this->system('git remote add ' . $module . ' git@git.dev.web-6.fr:6admin/' . $module . '.git');
-        $this->system('git subtree add --squash --prefix=6admin/' . $module . ' ' . $module . ' master');
+        $test = $this->system('git subtree add --squash --prefix=6admin/' . $module . ' ' . $module . ' master');
         
-        $this->info('Telechargement : OK !');
+        if(file_exists(realpath($cwd . '/6admin/' . $module))) {
+            $this->info('Telechargement : OK !');
+        }
+        else {
+            $this->error("Impossible de telecharger le module $module ! (modification non commit dans git ?)");
+            return 0;
+        }
     }
 }

@@ -1,10 +1,6 @@
 <?php namespace Six\Cli\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-class UninstallModuleCommand extends Command {
+class UninstallModuleCommand extends BaseModuleCommand {
 
     /**
      * The console command name.
@@ -27,30 +23,31 @@ class UninstallModuleCommand extends Command {
      */
     public function fire()
     {
+        $modules = $this->getTargetModules();
         
+        $this->uninstallModules($modules);
     }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
+    
+    public function uninstallModules($modules)
     {
-        return [
-            
-        ];
+        foreach($modules as $module) {
+            $this->uninstallModule($module);
+        }
     }
-
-    /**
-     * @return array
-     */
-    protected function getOptions()
+    
+    public function uninstallModule($module)
     {
-        return [
-            
-        ];
+        $cwd = getcwd();
+        
+        $this->info("Execution du script de desinstallation du module $module.");
+        $this->system('php artisan six:uninstall -f ' . $module);
+        
+        $this->info("Supression du module $module.");
+        $this->system('git remote remove ' . $module);
+        
+        $moduleFolder = realpath($cwd . '/6admin/' . $module);
+        if($this->confirm("Souhaitez-vous supprimer le dossier $moduleFolder ?")) {
+            $this->system('rm -Rf "' . $moduleFolder . '"');
+        }
     }
-
-
 }

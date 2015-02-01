@@ -37,9 +37,14 @@ class InstallModuleCommand extends BaseModuleCommand {
     
     public function installModule($module)
     {
-        $this->call('module:download', ['module' => $module]);
+        $downloaded = $this->call('module:download', ['module' => $module]);
         
-        $this->info("Execution du script d'installation du module $module.");
-        $this->system('php artisan six:install -f ' . $module);
+        if($downloaded) {
+            $this->info("Execution du script d'installation du module $module.");
+            $this->system('php artisan six:install -f ' . $module);
+        }
+        else {
+            $this->error("Impossible d'installer le module $module.");
+        }
     }
 }
