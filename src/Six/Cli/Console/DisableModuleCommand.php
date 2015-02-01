@@ -1,10 +1,6 @@
 <?php namespace Six\Cli\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-class DisableModuleCommand extends Command {
+class DisableModuleCommand extends BaseModuleCommand {
 
     /**
      * The console command name.
@@ -27,30 +23,6 @@ class DisableModuleCommand extends Command {
      */
     public function fire()
     {
-        
+        $this->error('Command not available yet');
     }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [
-            
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            
-        ];
-    }
-
-
 }

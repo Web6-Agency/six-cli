@@ -1,10 +1,6 @@
 <?php namespace Six\Cli\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-class ModuleCommand extends Command {
+class ModuleCommand extends BaseCommand {
 
     /**
      * The console command name.
@@ -27,30 +23,6 @@ class ModuleCommand extends Command {
      */
     public function fire()
     {
-        
+        $this->system('php artisan modules');
     }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [
-            
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            
-        ];
-    }
-
-
 }
