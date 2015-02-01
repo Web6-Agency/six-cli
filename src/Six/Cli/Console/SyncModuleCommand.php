@@ -1,10 +1,6 @@
 <?php namespace Six\Cli\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-class SyncModuleCommand extends Command {
+class SyncModuleCommand extends BaseModuleCommand {
 
     /**
      * The console command name.
@@ -27,30 +23,21 @@ class SyncModuleCommand extends Command {
      */
     public function fire()
     {
+        $modules = $this->getTargetModules();
         
+        $this->syncModules($modules);
     }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
+    
+    public function syncModules($modules)
     {
-        return [
-            
-        ];
+        foreach($modules as $module) {
+            $this->syncModule($module);
+        }
     }
-
-    /**
-     * @return array
-     */
-    protected function getOptions()
+    
+    public function syncModule($module)
     {
-        return [
-            
-        ];
+        $this->call('module:pull', ['module' => $module]);
+        $this->call('module:push', ['module' => $module]);
     }
-
-
 }

@@ -1,10 +1,6 @@
 <?php namespace Six\Cli\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-class PullModuleCommand extends Command {
+class PullModuleCommand extends BaseModuleCommand {
 
     /**
      * The console command name.
@@ -27,30 +23,21 @@ class PullModuleCommand extends Command {
      */
     public function fire()
     {
+        $modules = $this->getTargetModules();
         
+        $this->pullModules($modules);
     }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
+    
+    public function pullModules($modules)
     {
-        return [
-            
-        ];
+        foreach($modules as $module) {
+            $this->pullModule($module);
+        }
     }
-
-    /**
-     * @return array
-     */
-    protected function getOptions()
+    
+    public function pullModule($module)
     {
-        return [
-            
-        ];
+        $this->info("Recuperation des commit du subtree $module");
+        $this->system('git subtree pull --prefix=6admin/' . $module . ' --squash ' . $module . ' master');
     }
-
-
 }

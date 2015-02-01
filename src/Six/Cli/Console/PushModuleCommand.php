@@ -1,10 +1,6 @@
 <?php namespace Six\Cli\Console;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-class PushModuleCommand extends Command {
+class PushModuleCommand extends BaseModuleCommand {
 
     /**
      * The console command name.
@@ -27,30 +23,21 @@ class PushModuleCommand extends Command {
      */
     public function fire()
     {
+        $modules = $this->getTargetModules();
         
+        $this->pushModules($modules);
     }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
+    
+    public function pushModules($modules)
     {
-        return [
-            
-        ];
+        foreach($modules as $module) {
+            $this->pushModule($module);
+        }
     }
-
-    /**
-     * @return array
-     */
-    protected function getOptions()
+    
+    public function pushModule($module)
     {
-        return [
-            
-        ];
+        $this->info("Envoie des commit au subtree $module");
+        $this->system('git subtree push --prefix=6admin/' . $module . ' ' . $module . ' master');
     }
-
-
 }
