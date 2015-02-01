@@ -74,9 +74,6 @@ six module:uninstall [module_name]
 # Refresh a module by running uninstall / reinstall each modules
 six module:refresh [module_name]
 
-# Update a module by deleting the module folder, downloading new version and running installation script
-six module:update [module_name]
-
 # Temporary disable a module
 six module:disable
 

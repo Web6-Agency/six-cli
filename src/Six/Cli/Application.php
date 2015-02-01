@@ -32,7 +32,6 @@ class Application extends \Symfony\Component\Console\Application {
         'DownloadModule',
         'UninstallModule',
         'RefreshModule',
-        'UpdateModule',
         'DisableModule',
         'EnableModule',
         'SyncModule',
