@@ -38,6 +38,6 @@ class PullModuleCommand extends BaseModuleCommand {
     public function pullModule($module)
     {
         $this->info("Recuperation des commit du subtree $module");
-        $this->system('git subtree pull --prefix=6admin/' . $module . ' ' . $module . ' master');
+        $this->system('git subtree pull --prefix=6admin/' . $module . ' --squash ' . $module . ' master');
     }
 }
