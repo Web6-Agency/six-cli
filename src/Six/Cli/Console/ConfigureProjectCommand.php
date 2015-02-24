@@ -27,7 +27,10 @@ class ConfigureProjectCommand extends BaseCommand {
             $this->configureMySQL();
         }
     }
-    
+
+	/**
+     * @return bool
+     */
     private function configureMySQL()
     {
         $databaseFile = realpath(getcwd() . '/app/config/database.php');
@@ -71,7 +74,15 @@ class ConfigureProjectCommand extends BaseCommand {
             $this->info("Ecriture de la configuration OK !");
         }
     }
-    
+
+	/**
+     * @param $host
+     * @param $database
+     * @param $user
+     * @param $password
+     *
+     * @return bool|string
+     */
     private function isMysqlConnectionValid($host, $database, $user, $password) {
         // Create connection
         $connection = @mysqli_connect($host, $user, $password, $database);
@@ -82,7 +93,12 @@ class ConfigureProjectCommand extends BaseCommand {
         else
             return true;
     }
-    
+
+	/**
+     * @param $file
+     * @param $tag
+     * @param $value
+     */
     private function updateConfigFile($file, $tag, $value) {
         $data = file($file);
 

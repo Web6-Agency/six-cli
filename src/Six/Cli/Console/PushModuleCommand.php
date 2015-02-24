@@ -27,14 +27,20 @@ class PushModuleCommand extends BaseModuleCommand {
         
         $this->pushModules($modules);
     }
-    
+
+	/**
+     * @param $modules
+     */
     public function pushModules($modules)
     {
         foreach($modules as $module) {
             $this->pushModule($module);
         }
     }
-    
+
+	/**
+     * @param $module
+     */
     public function pushModule($module)
     {
         $this->info("Envoie des commit au subtree $module");

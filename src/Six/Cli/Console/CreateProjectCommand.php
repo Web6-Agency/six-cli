@@ -30,7 +30,10 @@ class CreateProjectCommand extends BaseCommand {
             $this->info('OK !');
         }
     }
-    
+
+	/**
+     *
+     */
     private function download()
     {
         $this->system('git archive --format=tar --remote=git@git.dev.web-6.fr:6admin/6admin.git master | tar -xf -');

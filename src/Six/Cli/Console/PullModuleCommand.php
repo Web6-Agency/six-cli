@@ -27,14 +27,20 @@ class PullModuleCommand extends BaseModuleCommand {
         
         $this->pullModules($modules);
     }
-    
+
+	/**
+     * @param $modules
+     */
     public function pullModules($modules)
     {
         foreach($modules as $module) {
             $this->pullModule($module);
         }
     }
-    
+
+	/**
+     * @param $module
+     */
     public function pullModule($module)
     {
         $this->info("Recuperation des commit du subtree $module");

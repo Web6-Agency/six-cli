@@ -27,14 +27,20 @@ class InstallModuleCommand extends BaseModuleCommand {
         
         $this->installModules($modules);
     }
-    
+
+	/**
+     * @param $modules
+     */
     public function installModules($modules)
     {
         foreach($modules as $module) {
             $this->installModule($module);
         }
     }
-    
+
+	/**
+     * @param $module
+     */
     public function installModule($module)
     {
         $downloaded = $this->call('module:download', ['module' => $module]);

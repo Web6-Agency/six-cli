@@ -26,10 +26,12 @@ class SetupProjectCommand extends BaseCommand {
         if($this->confirm('Initialiser un depot git et envoyer un commit initial [Y/n] ?')) {
             $this->initGit();
         }
-        
+
+        /*
         if($this->confirm('Telecharger tous les modules de 6admin disponibles (six module:download) [Y/n] ?')) {
             $this->downloadModules();
         }
+        */
         
         if($this->confirm('Mettre a jour les dependances composer du projet [Y/n] ?')) {
             $this->updateDependencies();
@@ -39,14 +41,20 @@ class SetupProjectCommand extends BaseCommand {
             $this->installModules();
         }
     }
-    
+
+	/**
+     *
+     */
     private function initGit()
     {
         $this->system('git init');
         $this->system('git add .');
         $this->system("git commit -m \"base project\"");
     }
-    
+
+	/**
+     *
+     */
     private function updateDependencies()
     {
         $cwd = getcwd();
@@ -59,12 +67,10 @@ class SetupProjectCommand extends BaseCommand {
         chdir($cwd);
         $this->system('composer update');
     }
-    
-    private function downloadModules()
-    {
-        $this->call('module:download');
-    }
-    
+
+	/**
+     *
+     */
     private function installModules()
     {
         $this->call('module:install');

@@ -27,14 +27,20 @@ class RefreshModuleCommand extends BaseModuleCommand {
         
         $this->refreshModules($modules);
     }
-    
+
+	/**
+     * @param $modules
+     */
     public function refreshModules($modules)
     {
         foreach($modules as $module) {
             $this->refreshModule($module);
         }
     }
-    
+
+	/**
+     * @param $module
+     */
     public function refreshModule($module)
     {
         $this->info("Execution du script de desinstallation du module $module.");

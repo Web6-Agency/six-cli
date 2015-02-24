@@ -27,14 +27,20 @@ class SyncModuleCommand extends BaseModuleCommand {
         
         $this->syncModules($modules);
     }
-    
+
+	/**
+     * @param $modules
+     */
     public function syncModules($modules)
     {
         foreach($modules as $module) {
             $this->syncModule($module);
         }
     }
-    
+
+	/**
+     * @param $module
+     */
     public function syncModule($module)
     {
         $this->call('module:pull', ['module' => $module]);

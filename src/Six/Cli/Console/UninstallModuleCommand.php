@@ -27,27 +27,38 @@ class UninstallModuleCommand extends BaseModuleCommand {
         
         $this->uninstallModules($modules);
     }
-    
+
+	/**
+     * @param $modules
+     */
     public function uninstallModules($modules)
     {
         foreach($modules as $module) {
             $this->uninstallModule($module);
         }
     }
-    
+
+	/**
+     * @param $module
+     */
     public function uninstallModule($module)
     {
         $cwd = getcwd();
         
         $this->info("Execution du script de desinstallation du module $module.");
         $this->system('php artisan six:uninstall -f ' . $module);
-        
+
         $this->info("Supression du module $module.");
-        $this->system('git remote remove ' . $module);
-        
-        $moduleFolder = realpath($cwd . '/6admin/' . $module);
-        if($this->confirm("Souhaitez-vous supprimer le dossier $moduleFolder ?")) {
-            $this->system('rm -Rf "' . $moduleFolder . '"');
+        if($this->option('dev')) {
+            $this->system('git remote remove ' . $module);
+
+            $moduleFolder = realpath($cwd . '/6admin/' . $module);
+            if($this->confirm("Souhaitez-vous supprimer le dossier $moduleFolder ?")) {
+                $this->system('rm -Rf "' . $moduleFolder . '"');
+            }
+        }
+        else {
+            $this->system('composer remove 6admin/' . $module);
         }
     }
 }

@@ -27,7 +27,12 @@ class DownloadModuleCommand extends BaseModuleCommand {
         
         return $this->downloadModules($modules);
     }
-    
+
+	/**
+     * @param $modules
+     *
+     * @return int
+     */
     public function downloadModules($modules)
     {
         foreach($modules as $module) {
@@ -36,7 +41,12 @@ class DownloadModuleCommand extends BaseModuleCommand {
         
         return 1;
     }
-    
+
+	/**
+     * @param $module
+     *
+     * @return int
+     */
     public function downloadModule($module)
     {
         $cwd = getcwd();
@@ -48,9 +58,14 @@ class DownloadModuleCommand extends BaseModuleCommand {
         
         $this->info("Telechargement du module $module ... ");
 
-        $this->system('git remote add ' . $module . ' git@git.dev.web-6.fr:6admin/' . $module . '.git');
-        $test = $this->system('git subtree add --squash --prefix=6admin/' . $module . ' ' . $module . ' master');
-        
+        if($this->option('dev')) {
+            $this->system('git remote add ' . $module . ' git@git.dev.web-6.fr:6admin/' . $module . '.git');
+            $this->system('git subtree add --squash --prefix=6admin/' . $module . ' ' . $module . ' master');
+        }
+        else {
+            $this->system('composer require 6admin/' . $module . ':~1.0');
+        }
+
         if(file_exists(realpath($cwd . '/6admin/' . $module))) {
             $this->info('Telechargement : OK !');
         }
