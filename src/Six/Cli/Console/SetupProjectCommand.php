@@ -67,6 +67,6 @@ class SetupProjectCommand extends BaseCommand {
      */
     private function installModules()
     {
-        $this->system('php artisan six:install');
+        $this->system('php artisan six:install -f');
     }
 }
