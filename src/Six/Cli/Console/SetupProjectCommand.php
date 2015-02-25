@@ -31,7 +31,7 @@ class SetupProjectCommand extends BaseCommand {
             $this->updateDependencies();
         }
         
-        if($this->confirm('Installer tous les modules telecharges (six module:install) [Y/n] ?')) {
+        if($this->confirm('Installer tous les modules telecharges (six six:install) [Y/n] ?')) {
             $this->installModules();
         }
     }
@@ -67,6 +67,6 @@ class SetupProjectCommand extends BaseCommand {
      */
     private function installModules()
     {
-        $this->call('module:install');
+        $this->system('php artisan six:install');
     }
 }
