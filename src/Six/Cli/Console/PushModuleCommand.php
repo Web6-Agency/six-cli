@@ -43,7 +43,19 @@ class PushModuleCommand extends BaseModuleCommand {
      */
     public function pushModule($module)
     {
-        $this->info("Envoie des commit au subtree $module");
-        $this->system('git subtree push --prefix=6admin/' . $module . ' ' . $module . ' master');
+        $cwd = getcwd();
+        chdir($cwd . '/6admin/' . $module);
+
+        $this->info("Detection des modifications du module $module");
+        $commit = exec('git rev-parse HEAD');
+
+        $this->info("Dernier commit du module : $commit");
+
+        $this->info("Execution du git push sur : composer $commit:master");
+        $this->system('git push composer ' . $commit . ':master');
+
+        $this->info("OK !");
+
+        chdir($cwd);
     }
 }

@@ -43,14 +43,15 @@ class InstallModuleCommand extends BaseModuleCommand {
      */
     public function installModule($module)
     {
-        $downloaded = $this->call('module:download', ['module' => $module]);
-        
-        if($downloaded) {
-            $this->info("Execution du script d'installation du module $module.");
-            $this->system('php artisan six:install -f ' . $module);
+        $cwd = getcwd();
+
+        if(!file_exists($cwd . '/6admin/' . $module)) {
+            $this->call('module:require', ['module' => $module]);
         }
-        else {
-            $this->error("Impossible d'installer le module $module.");
-        }
+
+        $this->info("Execution du script d'installation du module $module");
+        $this->system('php artisan six:install -f ' . $module);
+
+        $this->info("Installation du module terminee");
     }
 }

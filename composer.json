@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/console": "~2.3",
+        "illuminate/console": "4.*",
         "illuminate/container": "4.*",
         "illuminate/support": "4.*"
     },
@@ -22,5 +22,6 @@
     },
     "bin": [
         "bin/six"
-    ]
+    ],
+    "minimum-stability": "dev"
 }

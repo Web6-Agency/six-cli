@@ -39,14 +39,4 @@ abstract class BaseModuleCommand extends BaseCommand {
             ['module', InputArgument::OPTIONAL, 'The module name', null]
         ]);
     }
-
-	/**
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return array_merge(parent::getOptions(), [
-            ['dev', 'd', InputOption::VALUE_NONE]
-        ]);
-    }
 }

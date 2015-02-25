@@ -24,10 +24,7 @@ class CreateProjectCommand extends BaseCommand {
     public function fire()
     {
         if($this->confirm('Telecharger une fraiche installation de 6admin dans le dossier courant [Y/n] ?')) {
-            
             $this->download();
-            
-            $this->info('OK !');
         }
     }
 
@@ -36,6 +33,19 @@ class CreateProjectCommand extends BaseCommand {
      */
     private function download()
     {
-        $this->system('git archive --format=tar --remote=git@git.dev.web-6.fr:6admin/6admin.git master | tar -xf -');
+        $this->info('Recherche de la derniere version disponible ...');
+        $tag = $this->getLastTag();
+
+        $this->info('Recuperation et decompression de la version ' . $tag);
+        $this->system('git archive --format=tar --remote=git@git.dev.web-6.fr:6admin/6admin.git ' . $tag . ' | tar -xf -');
+
+        $this->info('Telechargement termine !');
+    }
+
+    private function getLastTag()
+    {
+        $reference = exec('git ls-remote git@git.dev.web-6.fr:6admin/6admin.git');
+        list(,$tag) = explode('refs/tags/', $reference);
+        return $tag;
     }
 }
