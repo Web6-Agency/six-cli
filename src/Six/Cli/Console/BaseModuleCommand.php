@@ -11,6 +11,8 @@ abstract class BaseModuleCommand extends BaseCommand {
         if(is_null($this->argument('module'))) {
             return [
                 'core',
+                'model',
+                'asset',
                 'account',
                 'catalog',
                 'backoffice',
