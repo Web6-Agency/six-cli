@@ -51,14 +51,7 @@ class SetupProjectCommand extends BaseCommand {
      */
     private function updateDependencies()
     {
-        $cwd = getcwd();
-        
-        $this->info("Execution de composer update pour creolab/laravel-modules");
-        chdir(realpath($cwd . '/workbench/creolab/laravel-modules'));
-        $this->system('composer update');
-
         $this->info("Execution de composer update");
-        chdir($cwd);
         $this->system('composer update');
     }
 
