@@ -22,7 +22,8 @@ abstract class BaseModuleCommand extends BaseCommand {
                 'frontoffice',
                 'media',
                 'remote',
-                'temoignage'
+                'temoignage',
+                'seo'
             ];
         }
         else {
