@@ -9,22 +9,13 @@ abstract class BaseModuleCommand extends BaseCommand {
     protected function getTargetModules()
     {
         if(is_null($this->argument('module'))) {
-            return [
-                'core',
-                'model',
-                'asset',
-                'account',
-                'catalog',
-                'backoffice',
-                'editable',
-                'editorial',
-                'form',
-                'frontoffice',
-                'media',
-                'remote',
-                'temoignage',
-                'seo'
-            ];
+            $modules = [];
+
+            foreach(glob("6admin/*") as $file) {
+                $modules[] = str_replace('6admin/', '', $file);
+            }
+            
+            return $modules;
         }
         else {
             return [$this->argument('module')];
