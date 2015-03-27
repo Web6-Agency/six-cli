@@ -47,7 +47,7 @@ class ConfigureProjectCommand extends BaseCommand {
             $host = $this->ask('[MySQL] Hote de la base de donnees [localhost] :', 'localhost');
             $database = $this->ask('[MySQL] Nom de la base de donnees [my_project] :', 'my_project');
             $user = $this->ask('[MySQL] Utilisateur de la base de donnees [root] :', 'root');
-            $password = $this->secret('[MySQL] Mot de passe pour l\'utilisateur ' . $user . ' [secret] :', 'secret');
+            $password = $this->secret('[MySQL] Mot de passe pour l\'utilisateur ' . $user . ' :');
 
             $this->info("Test de la connexion en cours ...");
             
