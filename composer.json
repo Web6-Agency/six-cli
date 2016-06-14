@@ -11,8 +11,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/console": "~4.2",
-        "illuminate/container": "~4.2|~5.0"
+        "illuminate/console": "~4.2"
     },
     "autoload": {
         "psr-0": {
