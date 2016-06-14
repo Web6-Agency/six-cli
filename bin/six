@@ -5,6 +5,6 @@ require __DIR__ . '/../../../autoload.php';
 
 $app = new Six\Cli\Application;
 
-$app->registerCommands(new Illuminate\Container\Container);
+$app->registerCommands();
 
 $app->run();
