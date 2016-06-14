@@ -7,7 +7,7 @@ class PushModuleCommand extends BaseModuleCommand {
      *
      * @var string
      */
-    protected $name = 'module:push';
+    protected $name, $signature = 'module:push';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class PushModuleCommand extends BaseModuleCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $modules = $this->getTargetModules();
         

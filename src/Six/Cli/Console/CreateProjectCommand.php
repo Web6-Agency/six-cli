@@ -7,7 +7,7 @@ class CreateProjectCommand extends BaseCommand {
      *
      * @var string
      */
-    protected $name = 'project:create';
+    protected $name, $signature = 'project:create';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class CreateProjectCommand extends BaseCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         if($this->confirm('Telecharger une fraiche installation de 6admin dans le dossier courant [Y/n] ?')) {
             $this->download();

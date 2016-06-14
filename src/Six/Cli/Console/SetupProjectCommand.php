@@ -7,7 +7,7 @@ class SetupProjectCommand extends BaseCommand {
      *
      * @var string
      */
-    protected $name = 'project:setup';
+    protected $name, $signature = 'project:setup';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class SetupProjectCommand extends BaseCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         if($this->confirm('Initialiser un depot git et envoyer un commit initial [Y/n] ?')) {
             $this->initGit();

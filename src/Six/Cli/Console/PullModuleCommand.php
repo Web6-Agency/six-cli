@@ -7,7 +7,7 @@ class PullModuleCommand extends BaseModuleCommand {
      *
      * @var string
      */
-    protected $name = 'module:pull';
+    protected $name, $signature = 'module:pull';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class PullModuleCommand extends BaseModuleCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $modules = $this->getTargetModules();
         

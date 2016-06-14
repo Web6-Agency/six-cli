@@ -7,7 +7,7 @@ class ModuleCommand extends BaseCommand {
      *
      * @var string
      */
-    protected $name = 'module';
+    protected $name, $signature = 'module';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class ModuleCommand extends BaseCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $this->system('php artisan modules');
     }

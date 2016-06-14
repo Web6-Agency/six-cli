@@ -7,7 +7,7 @@ class RefreshModuleCommand extends BaseModuleCommand {
      *
      * @var string
      */
-    protected $name = 'module:refresh';
+    protected $name, $signature = 'module:refresh';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class RefreshModuleCommand extends BaseModuleCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $modules = $this->getTargetModules();
         

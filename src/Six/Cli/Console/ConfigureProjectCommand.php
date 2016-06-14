@@ -7,7 +7,7 @@ class ConfigureProjectCommand extends BaseCommand {
      *
      * @var string
      */
-    protected $name = 'project:configure';
+    protected $name, $signature = 'project:configure';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class ConfigureProjectCommand extends BaseCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         if($this->confirm('Configurer les acces MySQL du projet [Y/n] ?')) {
             $this->configureMySQL();

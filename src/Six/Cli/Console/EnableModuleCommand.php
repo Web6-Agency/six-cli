@@ -7,7 +7,7 @@ class EnableModuleCommand extends BaseModuleCommand {
      *
      * @var string
      */
-    protected $name = 'module:enable';
+    protected $name, $signature = 'module:enable';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class EnableModuleCommand extends BaseModuleCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $this->error('Command not available yet');
     }

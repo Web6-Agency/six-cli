@@ -7,7 +7,7 @@ class ProjectWizardCommand extends BaseCommand {
      *
      * @var string
      */
-    protected $name = 'project:wizard';
+    protected $name, $signature = 'project:wizard';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class ProjectWizardCommand extends BaseCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         // Create a new 6admin project based on private repo
         $this->call("project:create");

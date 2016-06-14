@@ -7,7 +7,7 @@ class RequireModuleCommand extends BaseModuleCommand {
      *
      * @var string
      */
-    protected $name = 'module:require';
+    protected $name, $signature = 'module:require';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class RequireModuleCommand extends BaseModuleCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $modules = $this->getTargetModules();
         

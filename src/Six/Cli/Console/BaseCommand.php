@@ -27,6 +27,14 @@ abstract class BaseCommand extends Command {
             fclose($fp);
         }
     }
+
+	/**
+     * Backward compat for 4.* versions
+     */
+    public function fire()
+    {
+        $this->handle();
+    }
     
     /**
      * Get the console command arguments.

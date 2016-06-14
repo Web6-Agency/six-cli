@@ -7,7 +7,7 @@ class InstallModuleCommand extends BaseModuleCommand {
      *
      * @var string
      */
-    protected $name = 'module:install';
+    protected $name, $signature = 'module:install';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class InstallModuleCommand extends BaseModuleCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $modules = $this->getTargetModules();
         

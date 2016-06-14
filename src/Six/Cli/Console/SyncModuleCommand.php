@@ -7,7 +7,7 @@ class SyncModuleCommand extends BaseModuleCommand {
      *
      * @var string
      */
-    protected $name = 'module:sync';
+    protected $name, $signature = 'module:sync';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class SyncModuleCommand extends BaseModuleCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $modules = $this->getTargetModules();
         

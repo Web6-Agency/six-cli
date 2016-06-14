@@ -7,7 +7,7 @@ class UninstallModuleCommand extends BaseModuleCommand {
      *
      * @var string
      */
-    protected $name = 'module:uninstall';
+    protected $name, $signature = 'module:uninstall';
 
     /**
      * The console command description.
@@ -21,7 +21,7 @@ class UninstallModuleCommand extends BaseModuleCommand {
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $modules = $this->getTargetModules();
         
