@@ -1,7 +1,5 @@
 <?php namespace Six\Cli;
 
-use Illuminate\Container\Container;
-
 class Application extends \Symfony\Component\Console\Application {
 
     /**
@@ -50,11 +48,13 @@ class Application extends \Symfony\Component\Console\Application {
     /**
      * @param Container $container
      */
-    public function registerCommands(Container $container)
+    public function registerCommands()
     {
         foreach ($this->consoles as $console)
         {
-            $this->add($container->make($this->getConsoleClassName($console)));
+            $name = $this->getConsoleClassName($console);
+            
+            $this->add(new $name());
         }
     }
 
